@@ -1,0 +1,42 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Склад"/>
+    <meta name="author" content=0gl04q"/>
+
+    <link rel="shortcut icon" type="image/png" href="">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <title>{{ title }}</title>
+
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% include 'includes/sidebar.html' %}
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            {% include 'includes/header_main.html' %}
+
+            {% block content %} {% endblock %}
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" crossorigin="anonymous"></script>
+<script src="{% static 'dashboard.js' %}" crossorigin="anonymous"></script>
+
+</body>
+</html>

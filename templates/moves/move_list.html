@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Доставка</th>
+            <th scope="col">Цена доставки</th>
+            <th scope="col">Общая цена</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for move in movement_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ move.created }}</td>
+                <td>{{ move.get_move_type_display }}</td>
+                <td>{{ move.delivery }}</td>
+                <td>{{ move.delivery_price }}</td>
+                <td> -</td>
+                <td><a href="{% url 'move-detail' pk=move.pk %}">Редактировать</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

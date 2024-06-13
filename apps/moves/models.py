@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -12,6 +14,8 @@ class Movement(models.Model):
     class Types(models.TextChoices):
         SUPPLY = 'SU', 'Поставка'
         SHIPMENT = 'SH', 'Отгрузка'
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     move_type = models.CharField(choices=Types.choices, max_length=2, verbose_name='Тип движения',
                                  help_text='Поставка / Отгрузка')
@@ -44,7 +48,7 @@ class StrProduct(models.Model):
                                      verbose_name='Контрагент')
     supply = models.ForeignKey(Movement, on_delete=models.PROTECT, related_name='receipts', verbose_name='Поставка')
 
-    purchase_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена закупки', default=0)
+    purchase_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена за единицу', default=0)
     quantity = models.PositiveIntegerField(verbose_name='Количество')
 
     class Meta:
