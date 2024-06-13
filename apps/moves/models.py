@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from apps.store.models.manuals_models import Product, Counterparty, Delivery
+from apps.manuals.models import Product, Counterparty, Delivery
 
 User = get_user_model()
 

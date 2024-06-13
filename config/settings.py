@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'mptt',
     'phonenumber_field',
 
-    "apps.store.apps.StoreConfig"
+    "apps.moves.apps.MovesConfig",
+    "apps.manuals.apps.ManualsConfig"
 ]
 
 MIDDLEWARE = [

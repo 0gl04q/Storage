@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from mptt.admin import DraggableMPTTAdmin
 
-from apps.store.models import manuals_models, movement_models
+from apps.manuals import models as manuals_models
 
 
 @admin.register(manuals_models.Category)
@@ -40,6 +40,3 @@ class UnitsAdmin(admin.ModelAdmin):
     """ Админ-панель товаров """
     prepopulated_fields = {'slug': ('title',)}
 
-
-admin.site.register(movement_models.Movement)
-admin.site.register(movement_models.StrProduct)
