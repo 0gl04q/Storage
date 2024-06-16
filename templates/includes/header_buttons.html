@@ -1,0 +1,7 @@
+{% for key, value in buttons.items %}
+    <a href="{{ value }}" class="btn btn-sm btn-outline-secondary">{{ key }}</a>
+{% endfor %}
+
+{% if button_save %}
+    <button class="btn btn-sm btn-success" onclick="sendForm()">Сохранить</button>
+{% endif %}

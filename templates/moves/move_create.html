@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load moves_tags %}
+
+{% block content %}
+
+    <form id="form" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6">
+                {% include 'includes/form_button_with_errors.html' with field=form.move_type %}
+            </div>
+            <div class="form-group col-md-6">
+                {% include 'includes/form_button_with_errors.html' with field=form.counterparty %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                {% include 'includes/form_button_with_errors.html' with field=form.delivery %}
+            </div>
+            <div class="form-group col-md-6">
+                {% include 'includes/form_button_with_errors.html' with field=form.delivery_price %}
+            </div>
+        </div>
+
+    </form>
+
+    <hr>
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Таблица товаров</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <a href="{% url 'str-product-create' pk=movement.id %}" class="btn btn-sm btn-outline-secondary">Добавить</a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table text-center table-sm">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Товар</th>
+            <th scope="col">Цена за единицу</th>
+            <th scope="col">Количество</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for str in str_products %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ str.product }}</td>
+                <td>{{ str.purchase_price }}</td>
+                <td>{{ str.quantity }}</td>
+                <td><a href="{% url 'str-product-delete' pk=str.pk %}" class="btn btn-danger">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        function sendForm() {
+            const myForm = document.getElementById('form');
+            myForm.submit();
+        }
+    </script>
+{% endblock %}

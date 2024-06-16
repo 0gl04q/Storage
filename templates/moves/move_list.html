@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-    <table class="table">
+    <table class="table text-center table-sm">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Дата</th>
             <th scope="col">Тип</th>
+            <th scope="col">Контрагент</th>
             <th scope="col">Доставка</th>
-            <th scope="col">Цена доставки</th>
-            <th scope="col">Общая цена</th>
-            <th scope="col"></th>
+            <th scope="col" colspan="3"></th>
         </tr>
         </thead>
         <tbody>
@@ -19,10 +19,10 @@
                 <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ move.created }}</td>
                 <td>{{ move.get_move_type_display }}</td>
+                <td>{{ move.counterparty }}</td>
                 <td>{{ move.delivery }}</td>
-                <td>{{ move.delivery_price }}</td>
-                <td> -</td>
-                <td><a href="{% url 'move-detail' pk=move.pk %}">Редактировать</a></td>
+                <td><a href="{% url 'move-update' pk=move.pk %}" class="btn btn-primary">Редактировать</a></td>
+                <td><a href="{% url 'move-cancel' pk=move.pk %}" class="btn btn-danger">Отменить</a></td>
             </tr>
         {% endfor %}
         </tbody>

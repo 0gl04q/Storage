@@ -1,0 +1,15 @@
+
+{% load moves_tags %}
+
+{{ field.label }}
+
+{% if field.errors %}
+    {{ field|add_class:'form-control is-invalid' }}
+    {% for err in form.delivery_price.errors %}
+        <div class="invalid-feedback">
+            {{ err }}
+        </div>
+    {% endfor %}
+{% else %}
+    {{ field }}
+{% endif %}
